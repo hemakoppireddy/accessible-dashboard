@@ -1,9 +1,11 @@
 import "cypress-plugin-tab";
 
 describe("Keyboard Navigation", () => {
-  it("tabs through login form", () => {
+  beforeEach(() => {
     cy.visit("/login");
+  });
 
+  it("tabs through login form", () => {
     cy.get('[data-testid="username-input"]')
       .focus()
       .should("have.focus");
@@ -20,8 +22,6 @@ describe("Keyboard Navigation", () => {
   });
 
   it("login button works with Enter key", () => {
-    cy.visit("/login");
-
     cy.get('[data-testid="username-input"]')
       .type("testuser");
 

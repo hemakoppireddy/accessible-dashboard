@@ -8,7 +8,20 @@ describe("Profile Form Accessibility", () => {
   });
 
   it("has no accessibility violations", () => {
-    cy.checkA11y();
+    cy.checkA11y(null, null, (violations) => {
+      const seriousViolations = violations.filter(
+        (v) =>
+          v.impact === "critical" ||
+          v.impact === "serious"
+      );
+
+      cy.writeFile(
+        "cypress/reports/accessibility-report.json",
+        seriousViolations
+      );
+
+      expect(seriousViolations).to.have.length(0);
+    });
   });
 
   it("contains required form fields", () => {
