@@ -1,3 +1,5 @@
+import "cypress-plugin-tab";
+
 describe("Keyboard Navigation", () => {
   it("tabs through login form", () => {
     cy.visit("/login");
